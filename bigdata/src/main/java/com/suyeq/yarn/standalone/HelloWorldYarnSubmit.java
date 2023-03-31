@@ -1,9 +1,8 @@
-package com.suyeq.yarn;
+package com.suyeq.yarn.standalone;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.FileStatus;
 import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.FsStatus;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.yarn.api.ApplicationConstants;
 import org.apache.hadoop.yarn.api.records.ApplicationId;
@@ -20,13 +19,10 @@ import org.apache.hadoop.yarn.api.records.YarnApplicationState;
 import org.apache.hadoop.yarn.client.api.YarnClient;
 import org.apache.hadoop.yarn.client.api.YarnClientApplication;
 import org.apache.hadoop.yarn.conf.YarnConfiguration;
-import org.apache.hadoop.yarn.exceptions.YarnException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -104,7 +100,9 @@ public class HelloWorldYarnSubmit {
 
         /**=====6.准备启动命令=====**/
         List<String> commands = new ArrayList<String>() {{
-            add(ApplicationConstants.Environment.JAVA_HOME.$$() + "/bin/java -Xmx300m com.suyeq.yarn.HelloWorldAM");
+            String standAlone = "com.suyeq.yarn.standalone.HelloWorldAM";
+            String distributed = "com.suyeq.yarn.distributed.DistributedAM";
+            add(ApplicationConstants.Environment.JAVA_HOME.$$() + "/bin/java -Xmx300m " + distributed);
         }};
 
         /**=====7.构造am container运行资源+环境+脚本=====**/

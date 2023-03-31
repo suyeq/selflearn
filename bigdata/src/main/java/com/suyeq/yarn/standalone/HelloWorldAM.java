@@ -1,4 +1,4 @@
-package com.suyeq.yarn;
+package com.suyeq.yarn.standalone;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.net.NetUtils;
