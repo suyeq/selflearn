@@ -1,5 +1,6 @@
 package com.suyeq.shop.controller;
 
+import com.suyeq.shop.dto.Result;
 import com.suyeq.shop.service.ShopService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,8 @@ public class ShopController {
     private ShopService shopService;
 
     @GetMapping("/{id}")
-    public String selectShopDetails(@PathVariable("id") Long id) {
-        return shopService.selectUserDetails(id);
+    public Result<String> selectShopDetails(@PathVariable("id") Long id) {
+        shopService.selectUserDetails(id);
+        return new Result<>(true);
     }
 }
